@@ -1,0 +1,6 @@
+CREATE TABLE `my_database`.`Application` (
+  `idApplication` INT NOT NULL,
+  `Application Name` VARCHAR(45) NULL,
+  `Application Details` VARCHAR(45) NULL,
+  `Application Status` VARCHAR(45) NULL,
+  PRIMARY KEY (`idApplication`));
