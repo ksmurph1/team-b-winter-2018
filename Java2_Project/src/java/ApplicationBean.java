@@ -11,7 +11,7 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "applicationBean")
 @RequestScoped
 public class ApplicationBean{
-    private static final String SQL_INSERT = "INSERT INTO Application (col1, col2, col3, col4) VALUES (?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO `my_database`.`Application` (`idApplication`, `Application Name`, `Application Details`, `Application Status`) VALUES (?, ?, ?, ?);";
     
     private String appName;
     private String appDetails;
