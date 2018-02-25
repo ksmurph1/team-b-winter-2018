@@ -1,14 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Add Application</title>
     </h:head>
     <h:body>
-         <h:form>
+        <h1>Add Application</h1>
+        <h:form>
+            <h:panelGrid columns="2">
+            <h:outputText value="Application Name"></h:outputText>
+            <h:inputText value="#{applicationBean.appName}" required="true"
+                requiredMessage="Name is required">
+            </h:inputText>
+            <h:outputText value="Description"></h:outputText>
+            <h:inputTextarea value="#{applicationBean.appDetails}" cols="40"
+                rows="4"></h:inputTextarea>
+            <h:outputText value="Status"></h:outputText>
+            <h:selectOneMenu value="#{applicationBean.appStatus}">
+                <f:selectItem itemValue="Open" itemLabel="Open"/>
+                <f:selectItem itemValue="Closed" itemLabel="Closed"/>
+            </h:selectOneMenu>
+            <h:commandButton action = "#{applicationBean.addApplication}" value = "Save" />
             <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
-         </h:form>
+        </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
 
