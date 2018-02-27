@@ -1,7 +1,10 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -51,7 +54,7 @@ public class ApplicationBean{
      * 
      * @throws ClassNotFoundException 
      */
-    public void addApplication() throws ClassNotFoundException
+    public String addApplication() throws ClassNotFoundException
     {
         Application newApp = new Application();
         newApp.setAppName(this.appName);
@@ -70,7 +73,11 @@ public class ApplicationBean{
             pst.setObject(4, newApp.getAppStatus());
         
             pst.execute();
+            con.close();
+            return "addApplicationConfirmation";
+            
         } catch (SQLException e) {
+            return null;
         }
     }
     

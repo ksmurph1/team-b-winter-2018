@@ -11,8 +11,7 @@
         <h:form>
             <h:panelGrid columns="2">
             <h:outputText value="Application Name"></h:outputText>
-            <h:inputText value="#{applicationBean.appName}" required="true"
-                requiredMessage="Name is required">
+            <h:inputText value="#{applicationBean.appName}">
             </h:inputText>
             <h:outputText value="Description"></h:outputText>
             <h:inputTextarea value="#{applicationBean.appDetails}" cols="40"

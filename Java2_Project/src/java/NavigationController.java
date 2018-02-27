@@ -14,6 +14,10 @@ public class NavigationController implements Serializable {
       return "addApplication";
    }
    
+   public String moveToAddApplicationConfirmationPage() {
+       return "addApplicationConfirmation";
+   }
+   
    public String moveToEditApplicationPage() {
        return "editApplication";
    }
