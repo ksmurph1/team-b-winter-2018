@@ -1,9 +1,10 @@
-CREATE TABLE `my_database`.`Ticket` (
-  `idTicket` INT NOT NULL,
-  `Application` VARCHAR(45) NULL,
-  `Status` VARCHAR(45) NULL,
-  `Priority` VARCHAR(45) NULL,
+CREATE TABLE `database`.`Ticket` (
+  `id` INT NOT NULL,
+  `idApplication` int NOT NULL,
+  `Status` ENUM('NEW', 'SOLVED', 'OPEN', 'CLOSED') DEFAULT 'NEW' NOT NULL,
+  `Priority` ENUM('HIGH','MEDIUM','LOW') NOT NULL,
   `Assignee` VARCHAR(45) NULL,
   `Summary` VARCHAR(45) NULL,
   `Detailed Description` VARCHAR(45) NULL,
-  PRIMARY KEY (`idTicket`));
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`idApplication`) REFERENCES `Application`(`id`));
