@@ -1,3 +1,4 @@
+package java;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -5,16 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.ManagedBean;
+import javax.faces.event.NamedEvent;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+
 
 /**
  * Bean for Application
  */
-@Named(value = "applicationBean")
+@Named("applicationBean")
 @RequestScoped
 public class ApplicationBean{
-    private static final String SQL_INSERT = "INSERT INTO `my_database`.`Application` (`idApplication`, `Application Name`, `Application Details`, `Application Status`) VALUES (?, ?, ?, ?);";
+    private static final String SQL_INSERT = "INSERT INTO `my_database`.`Application` "
+    		+ "(`idApplication`, "
+    		+ "`Application Name`, `Application Details`,"
+    		+ " `Application Status`) VALUES (?, ?, ?, ?);";
+    private static final String SQL_UPDATE = "UPDATE  `my_database`.`Application` "
+    		+ "SET "
+    		+ "`Application Details` = ?"
+    		+ ", `Application Status` = ?" 
+    		+ " where `Application Name` = ?";
     
     private String appName;
     private String appDetails;
@@ -80,6 +92,30 @@ public class ApplicationBean{
             return null;
         }
     }
+    public String editApplication() throws ClassNotFoundException
+    {
+        Application newApp = new Application();
+        newApp.setAppName(this.appName);
+        newApp.setAppDetails(this.appDetails);
+        newApp.setAppStatus(this.appStatus);
+        
+        Connection con = getConnection();
+      
+        try {   
+            PreparedStatement pst = con.prepareStatement(SQL_UPDATE);
+            pst.setObject(1, newApp.getAppDetails());
+            pst.setObject(2, newApp.getAppStatus());
+            pst.setObject(3, newApp.getAppName());
+        
+            pst.execute();
+            con.close();
+            return "addApplicationConfirmation";
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+  
     
     /**
      * Note: Make sure to update the url and credentials to your own
