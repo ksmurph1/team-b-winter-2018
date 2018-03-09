@@ -1,7 +1,5 @@
 package java;
 import java.io.Serializable;
-import javax.faces.event.NamedEvent;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 

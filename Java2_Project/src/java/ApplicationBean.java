@@ -4,10 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.bean.ManagedBean;
-import javax.faces.event.NamedEvent;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -22,11 +18,13 @@ public class ApplicationBean{
     		+ "(`idApplication`, "
     		+ "`Application Name`, `Application Details`,"
     		+ " `Application Status`) VALUES (?, ?, ?, ?);";
+    private static final String SQL_SELECT = "SELECT * FROM `my_database`.`Application` "
+    		+ "WHERE name = ?";
     private static final String SQL_UPDATE = "UPDATE  `my_database`.`Application` "
     		+ "SET "
-    		+ "`Application Details` = ?"
-    		+ ", `Application Status` = ?" 
-    		+ " where `Application Name` = ?";
+    		+ "Details = ?"
+    		+ " , Status = ?" 
+    		+ " WHERE Name = ?";
     
     private String appName;
     private String appDetails;
@@ -92,15 +90,34 @@ public class ApplicationBean{
             return null;
         }
     }
+    public Application getApplication() throws ClassNotFoundException
+    {
+    	 Application infoApp = new Application();
+    	 infoApp.setAppName(this.appName);
+         Connection con = getConnection();
+         ResultSet rs;
+ 		try {
+ 			PreparedStatement pst = con.prepareStatement(SQL_SELECT);
+ 			pst.setObject(1, infoApp.getAppName());
+ 			 rs = pst.executeQuery();
+ 			  while(rs.next()){
+ 		            //Retrieve by column name
+ 				 infoApp.setAppDetails(rs.getString("appDetails"));
+ 				infoApp.setAppStatus(rs.getString("appStatus"));
+ 		        }
+ 			  
+ 		} catch (SQLException e1) {
+ 			// TODO Auto-generated catch block
+ 			e1.printStackTrace();
+ 		}
+ 		return infoApp;
+    }
     public String editApplication() throws ClassNotFoundException
     {
         Application newApp = new Application();
         newApp.setAppName(this.appName);
-        newApp.setAppDetails(this.appDetails);
-        newApp.setAppStatus(this.appStatus);
-        
+       
         Connection con = getConnection();
-      
         try {   
             PreparedStatement pst = con.prepareStatement(SQL_UPDATE);
             pst.setObject(1, newApp.getAppDetails());
