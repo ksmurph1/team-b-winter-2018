@@ -1,5 +1,5 @@
 CREATE TABLE `database`.`Ticket` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `idApplication` int NOT NULL,
   `Status` ENUM('NEW', 'SOLVED', 'OPEN', 'CLOSED') DEFAULT 'NEW' NOT NULL,
   `Priority` ENUM('HIGH','MEDIUM','LOW') NOT NULL,

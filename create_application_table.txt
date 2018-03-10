@@ -1,5 +1,5 @@
 CREATE TABLE `database`.`Application` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `Details` VARCHAR(45) NULL,
   `Status` enum('OPEN','CLOSED') default 'OPEN' not null,

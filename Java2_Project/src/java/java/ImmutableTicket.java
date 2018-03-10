@@ -32,33 +32,33 @@ class ImmutableTicket
     }
     ImmutableTicket()
     {}
-    int getTicketID()
+    public int getTicketID()
     {
         return id;
     }
     
-    String getTicketStatus() 
+    public String getTicketStatus() 
     {
         return status;
     }
     
 
-    String getPriority() 
+    public String getPriority() 
     {
         return priority;
     }
     
-    String getAssignee() 
+    public String getAssignee() 
     {
         return assignee;
     }
     
-    String getSummary() 
+    public String getSummary() 
     {
         return summary;
     }
     
-    String getDetailedDescription() 
+    public String getDetailedDescription() 
     {
         return detailedDescription;
     }

@@ -19,7 +19,7 @@
     			<th class="ticket-table-hdr">Summary</th>
     		</tr>
                 <tbody class="ticket-tbl-body">
-                    <ui:repeat var="ticket" value="#{ticketBean.getTickets}" varStatus="tblStatus">
+                    <ui:repeat var="ticket" value="#{ticketBean.getTickets()}" varStatus="tblStatus">
 	    			<h:panelGroup rendered="#{tblStatus.even}">
 	   			  <tr class="ticket-tbl-even-row">
 		    			<td>#{ticket.getTicketID}</td>

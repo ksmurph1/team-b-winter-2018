@@ -1,3 +1,4 @@
+package java;
 
 public class Application {
     private String appName;
