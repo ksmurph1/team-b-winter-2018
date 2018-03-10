@@ -1,13 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Open Tickets</title>
+        <!--<h:outputStylesheet library="css" name="tablestyle.css" />-->
     </h:head>
     <h:body>
         <h:form>
             <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
+            <table class="ticket-table">
+                <tr>
+    			<th class="ticket-table-hdr">Id</th>
+    			<th class="ticket-table-hdr">Priority</th>
+    			<th class="ticket-table-hdr">Status</th>
+    			<th class="ticket-table-hdr">Summary</th>
+    		</tr>
+                <tbody class="ticket-tbl-body">
+                    <ui:repeat var="ticket" value="#{ticketBean.getTickets}" varStatus="tblStatus">
+	    			<h:panelGroup rendered="#{tblStatus.even}">
+	   			  <tr class="ticket-tbl-even-row">
+		    			<td>#{ticket.getTicketID}</td>
+		    			<td>#{ticket.getPriority}</td>
+		    			<td>#{ticket.getTicketStatus}</td>
+		    			<td>#{ticket.getSummary}</td>
+		    		  </tr>
+	    			</h:panelGroup>
+	    		        <h:panelGroup rendered="#{tblStatus.odd}">
+	    			  <tr class="ticket-tbl-odd-row">
+		    			<td>#{ticket.getTicketID}</td>
+		    			<td>#{ticket.getPriority}</td>
+		    			<td>#{ticket.getTicketStatus}</td>
+		    			<td>#{ticket.getSummary}</td>
+		    		  </tr>
+	    			</h:panelGroup>
+	    		</ui:repeat>
+                </tbody>
+            </table>       
         </h:form>
     </h:body>
 </html>

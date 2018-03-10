@@ -9,21 +9,17 @@
         <h:form>
          <h:panelGrid columns="2">
             <h:outputText value="Application Name"></h:outputText>
-            <h:inputText value="#{applicationBean.appName}"></h:inputText>
-            <h:commandButton action="#{applicationBean.getApplication()}" value="Get Information"></h:commandButton>
-            
-             </h:panelGrid>
-            
-            <h:panelGrid columns="2">
+            <h:inputText value="#{applicationBean.appName}">
+            </h:inputText>
             <h:outputText value="Description"></h:outputText>
             <h:inputTextarea value="#{applicationBean.appDetails}" cols="40"
                 rows="4"></h:inputTextarea>
             <h:outputText value="Status"></h:outputText>
             <h:selectOneMenu value="#{applicationBean.appStatus}">
                 <f:selectItem itemValue="Open" itemLabel="Open"/>
-                <h:selectItem itemValue="Closed" itemLabel="Closed"/>
+                <f:selectItem itemValue="Closed" itemLabel="Closed"/>
             </h:selectOneMenu>
-            <h:commandButton action = "#{applicationBean.editApplication()}" value = "Update Application" />
+            <h:commandButton action = "#{applicationBean.addApplication}" value = "Save" />
             <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
         </h:panelGrid>
         </h:form>
