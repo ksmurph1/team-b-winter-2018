@@ -1,4 +1,4 @@
-package java;
+
 /**
  * Ticket POJO
  */

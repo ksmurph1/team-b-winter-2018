@@ -1,4 +1,3 @@
-package java;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ import javax.enterprise.context.RequestScoped;
 /**
  * Bean for Application
  */
-@Named("applicationBean")
+@Named(value = "applicationBean")
 @RequestScoped
 public class ApplicationBean{
     private static final String SQL_INSERT = "INSERT INTO `my_database`.`Application` "
