@@ -58,7 +58,7 @@ public class SubmitTicketBean extends SubmitTicket {
     {
         ResultSet result_rs = null;
         Connection con = getConnection();
-        int application_id = 0;
+        int application_id = -1;
         String app_status = null;
         try
         {
@@ -87,7 +87,7 @@ public class SubmitTicketBean extends SubmitTicket {
     public String addTicket() throws ClassNotFoundException
     {
         int idApplication = getApplicationId(this.getAppName());        
-        if(idApplication == 0) {
+        if(idApplication == -1) {
             System.out.println("Application is not OPEN");
             return "Application is not OPEN";
         }
