@@ -32,6 +32,10 @@ class ImmutableTicket
     }
     ImmutableTicket()
     {}
+    public int getAppID()
+    {
+        return appId;
+    }
     public int getTicketID()
     {
         return id;

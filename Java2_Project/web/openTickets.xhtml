@@ -22,7 +22,8 @@
                     <ui:repeat var="ticket" value="#{ticketBean.getTickets()}" varStatus="tblStatus">
 	    			<h:panelGroup rendered="#{tblStatus.even}">
 	   			  <tr class="ticket-tbl-even-row">
-		    			<td>#{ticket.getTicketID()}</td>
+		    			<td><h:link value="#{ticket.getTicketID()}" outcome="editTicket">
+                                             <c:param name = "id" value = "#{ticket.getTicketID()}" /></h:link></td>
 		    			<td>#{ticket.getPriority()}</td>
 		    			<td>#{ticket.getTicketStatus()}</td>
 		    			<td>#{ticket.getSummary()}</td>
@@ -30,7 +31,8 @@
 	    			</h:panelGroup>
 	    		        <h:panelGroup rendered="#{tblStatus.odd}">
 	    			  <tr class="ticket-tbl-odd-row">
-		    			<td>#{ticket.getTicketID()}</td>
+		    			<td><h:link value="#{ticket.getTicketID()}" outcome="editTicket">
+                                             <c:param name = "id" value = "#{ticket.getTicketID()}" /></h:link></td>
 		    			<td>#{ticket.getPriority()}</td>
 		    			<td>#{ticket.getTicketStatus()}</td>
 		    			<td>#{ticket.getSummary()}</td>

@@ -76,5 +76,29 @@ final class TicketDataLayer implements ITicketDataLayer
     public void saveTicket(ImmutableTicket ticket) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Application getAppById(int id) 
+    {
+       Application app=null;
+       if (connection != null)
+       {
+            try (PreparedStatement statement=
+                    connection.prepareStatement(props.getProperty("jdbc.getappbyidSQL")))
+            {
+                statement.setInt(1, id);
+                ResultSet rset=statement.executeQuery();
+                rset.first();
+                app=new Application(rset.getObject("Name", String.class),rset.getObject("Details", String.class),
+                           rset.getObject("Status",String.class));
+                
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex.getStackTrace());
+            }
+       }
+       return app; 
+    }
     
 }
