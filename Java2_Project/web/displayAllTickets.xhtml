@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>All Tickets</title>
+    </h:head>
+    <h:body>
+        <h1>All Tickets</h1>
+        <h:form>
+            <h:dataTable value="#{ticketBean.getAllTickets()}" var="result"
+                         cellspacing="1"
+                         cellpadding="5"
+                         border="1">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Application Name" /></f:facet>
+                <h:outputText value="#{result.appName}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>           
+                <h:outputText value="#{result.ticketStatus}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>           
+                <h:outputText value="#{result.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Assignee</f:facet>           
+                <h:outputText value="#{result.assignee}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Summary</f:facet>           
+                <h:outputText value="#{result.summary}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Detailed Description</f:facet>           
+                <h:outputText value="#{result.detailedDescription}"/>
+            </h:column>
+            </h:dataTable>
+
+            <h:commandButton action = "#{navigationController.moveToSubmitTicketPage}" value = "Back To Submit Ticket Page" />
+            <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
+        
+        </h:form>
+    </h:body>
+</html>
+

@@ -30,4 +30,8 @@ public class NavigationController implements Serializable {
    public String moveToOpenTicketsPage() {
        return "openTickets";
    }
+   
+   public String moveToDisplayTicketsPage() {
+       return "displayAllTickets";
+   }
 }
