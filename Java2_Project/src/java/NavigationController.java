@@ -1,11 +1,10 @@
 
 
 import java.io.Serializable;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="navigationController",eager=true)
+@ManagedBean(name="navigationController")
 @RequestScoped
 public class NavigationController implements Serializable {
    public String moveToHomePage() {

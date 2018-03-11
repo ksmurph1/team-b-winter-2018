@@ -5,10 +5,13 @@
  */
 
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -16,15 +19,17 @@ import java.util.Properties;
  */
 final class TicketDataLayer implements ITicketDataLayer 
 {
-    private final static String PROPSNAME="../../../../src/conf";
+    private final static String PROPSNAME="/database.properties";
     private static Connection connection;
     private static Properties props;
     static
     {
        props = new Properties();
-       try(FileInputStream in = new FileInputStream(PROPSNAME))
+      
+       try
        {
-         props.load(in);  
+           InputStream in=TicketDataLayer.class.getResourceAsStream(PROPSNAME);
+       props.load(in);  
        String driver = props.getProperty("jdbc.driver");
        if (driver != null) 
        {
@@ -37,6 +42,7 @@ final class TicketDataLayer implements ITicketDataLayer
        }
        catch (Exception ex)
        {
+           System.out.println(ex.getStackTrace());
        }
     }
 
@@ -59,9 +65,11 @@ final class TicketDataLayer implements ITicketDataLayer
                 }
             }
             catch (Exception ex)
-            {}
+            {
+                System.out.println(ex.getStackTrace());
+            }
        }
-       return (Ticket[])result.toArray();
+       return result.toArray(new Ticket[result.size()]);
     }
 
     @Override

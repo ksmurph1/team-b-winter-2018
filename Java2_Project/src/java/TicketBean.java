@@ -1,12 +1,12 @@
 
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 
 /**
  * Bean for Ticket
  */
-@Named(value = "ticketBean")
+@ManagedBean(name="ticketBean")
 @RequestScoped
 public class TicketBean 
 {

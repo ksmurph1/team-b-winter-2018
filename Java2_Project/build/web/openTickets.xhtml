@@ -22,18 +22,18 @@
                     <ui:repeat var="ticket" value="#{ticketBean.getTickets()}" varStatus="tblStatus">
 	    			<h:panelGroup rendered="#{tblStatus.even}">
 	   			  <tr class="ticket-tbl-even-row">
-		    			<td>#{ticket.getTicketID}</td>
-		    			<td>#{ticket.getPriority}</td>
-		    			<td>#{ticket.getTicketStatus}</td>
-		    			<td>#{ticket.getSummary}</td>
+		    			<td>#{ticket.getTicketID()}</td>
+		    			<td>#{ticket.getPriority()}</td>
+		    			<td>#{ticket.getTicketStatus()}</td>
+		    			<td>#{ticket.getSummary()}</td>
 		    		  </tr>
 	    			</h:panelGroup>
 	    		        <h:panelGroup rendered="#{tblStatus.odd}">
 	    			  <tr class="ticket-tbl-odd-row">
-		    			<td>#{ticket.getTicketID}</td>
-		    			<td>#{ticket.getPriority}</td>
-		    			<td>#{ticket.getTicketStatus}</td>
-		    			<td>#{ticket.getSummary}</td>
+		    			<td>#{ticket.getTicketID()}</td>
+		    			<td>#{ticket.getPriority()}</td>
+		    			<td>#{ticket.getTicketStatus()}</td>
+		    			<td>#{ticket.getSummary()}</td>
 		    		  </tr>
 	    			</h:panelGroup>
 	    		</ui:repeat>
