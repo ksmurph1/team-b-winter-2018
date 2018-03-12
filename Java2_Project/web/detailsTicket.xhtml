@@ -9,36 +9,44 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <c:set var="ticket" scope="view" value="#{ticketBean.getTicket(param['id'])}"/>
     <h:head>
         #{appTktBean.setAppById(ticket.getAppID())}
-        <title>Ticket Editor</title>
+        <title>Ticket Details</title>
+        <h:outputScript library="js" name="readonly.js" target="body"/>
+        <h:outputStylesheet library="css" name="ticketdetails.css" />
     </h:head>
     <h:body>
+        
         <h:form>
             <h:panelGrid columns="2">
             <h:outputText value="Summary"></h:outputText>
-            <h:inputText value="#{ticket.getSummary()}"/>
+            <h:inputText class="readTxt" value="#{ticket.getSummary()}"/>
             <h:outputText value="Description"/>
-            <h:inputTextarea value="#{ticket.getDetailedDescription()}" 
+            <h:inputTextarea class="readTxt" value="#{ticket.getDetailedDescription()}" 
                              cols="40" rows="4"/>
             <h:outputText value="Priorty"/>
-            <h:inputText value="#{ticket.getPriority()}"/>
+            <h:inputText class="readTxt" value="#{ticket.getPriority()}"/>
             <h:outputText value="Status"/>
-            <h:inputText value="#{ticket.getTicketStatus()}"/>
+            <h:inputText class="readTxt" value="#{ticket.getTicketStatus()}"/>
             <h:outputText value="Application"/>
             <h:panelGrid columns="2">
             <h:outputText value="Name"/>
-            <h:inputText value="#{appTktBean.appName}"/>
+            <h:inputText class="readTxt" value="#{appTktBean.appName}"/>
             <h:outputText value="Details"/>
-            <h:inputText value="#{appTktBean.appDetails}"/>
+            <h:inputText class="readTxt" value="#{appTktBean.appDetails}"/>
             <h:outputText value="Status"/>
-            <h:inputText value="#{appTktBean.appStatus}"/>
+            <h:inputText class="readTxt" value="#{appTktBean.appStatus}"/>
             </h:panelGrid>
             <h:outputText value="Assignee"/>
-            <h:inputText value="#{ticket.getAssignee()}"/>
+            <h:inputText class="readTxt" value="#{ticket.getAssignee()}"/>
         </h:panelGrid>
+            <br/>
+            <h:button value="Edit" outcome="editTicket" >
+                <f:param name="id" value="#{param['id']}" />
+            </h:button>
         </h:form>
     </h:body>
 </html>

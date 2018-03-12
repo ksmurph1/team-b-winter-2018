@@ -1,6 +1,6 @@
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +13,7 @@ import javax.faces.bean.RequestScoped;
  * @author kerry
  */
 @ManagedBean(name="appTktBean")
-@RequestScoped
+@ApplicationScoped
 public class AppTicketBean extends ApplicationBean 
 {
     private ITicketDataLayer dl=new TicketDataLayer();
