@@ -5,13 +5,10 @@
  */
 
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 /**
  *
@@ -73,8 +70,27 @@ final class TicketDataLayer implements ITicketDataLayer
     }
 
     @Override
-    public void saveTicket(ImmutableTicket ticket) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateTicket(final ImmutableTicket ticket) 
+    {
+       if (connection != null && ticket != null)
+       {
+            try (PreparedStatement statement=
+                    connection.prepareStatement(props.getProperty("jdbc.updateticketSQL")))
+            {
+                statement.setInt(1, ticket.getAppID());
+                statement.setString(2, ticket.getTicketStatus());
+                statement.setString(3, ticket.getPriority());
+                statement.setString(4, ticket.getAssignee());
+                statement.setString(5, ticket.getSummary());
+                statement.setString(6, ticket.getDetailedDescription());
+                statement.setInt(7,ticket.getTicketID());
+                statement.execute();               
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex.getStackTrace());
+            }
+       }
     }
 
     @Override

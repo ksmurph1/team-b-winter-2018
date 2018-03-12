@@ -11,7 +11,7 @@
 interface ITicketDataLayer 
 {
    Ticket[] getTickets();
-   void saveTicket(final ImmutableTicket ticket);
+   void updateTicket(final ImmutableTicket ticket);
 
    Application getAppById(int id);
 

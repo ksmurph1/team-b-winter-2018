@@ -12,27 +12,38 @@ import javax.faces.bean.RequestScoped;
 public class TicketBean 
 {
     private ITicketDataLayer dl=new TicketDataLayer();
-    private Ticket[] tickets;
+    //private Ticket[] tickets;
     private Ticket ticket=new Ticket();
     private int appId;
     
-    public ImmutableTicket[] getTickets()
+    public ImmutableTicket[] getOpenTickets()
     {
-        return tickets;
+        // make sure get from database in case updated
+        // only display open tickets
+        return (ImmutableTicket[])Arrays.stream(dl.getTickets()).filter(
+                t->"NEW".equals(t.getTicketStatus()) || "OPEN".equals(
+                        t.getTicketStatus())).toArray(ImmutableTicket[]::new);
     }
     
     public ImmutableTicket getTicket(final int id)
     {
-        // get ticket with matching id
-        ticket=Arrays.stream(tickets).filter(t->t.getTicketID() == id).findFirst().get();
-        return ticket;
+           // get ticket with matching id
+           return Arrays.stream(dl.getTickets()).filter(t->t.getTicketID() == id).findFirst().get();
+    }
+    
+    public void setTicket(final int id)
+    {
+        ImmutableTicket immutableTkt=getTicket(id); 
+        ticket=new Ticket(immutableTkt.getTicketID(),immutableTkt.getAppID(),immutableTkt.getTicketStatus(),
+                immutableTkt.getPriority(),immutableTkt.getAssignee(),immutableTkt.getSummary(),
+                immutableTkt.getDetailedDescription());
     }
     /**
      * Creates a new instance of TicketBean
      */
     public TicketBean() 
     {
-        tickets=dl.getTickets();
+      // tickets=dl.getTickets();
     }
     public int getAppID()
     {
@@ -95,9 +106,9 @@ public class TicketBean
     {
        this.appId=id;    
     }
-    
-    public void saveTicket()
+    public String saveTicket()
     {
-    //    dl.updateTicket(ticket);
+        dl.updateTicket(ticket);
+        return "/openTickets.xhtml?faces-redirect=true";
     }
 }

@@ -9,8 +9,7 @@
         <!--<h:outputStylesheet library="css" name="tablestyle.css" />-->
     </h:head>
     <h:body>
-        <h:form>
-            <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
+        <h:form>            
             <table class="ticket-table">
                 <tr>
     			<th class="ticket-table-hdr">Id</th>
@@ -19,7 +18,7 @@
     			<th class="ticket-table-hdr">Summary</th>
     		</tr>
                 <tbody class="ticket-tbl-body">
-                    <ui:repeat var="ticket" value="#{ticketBean.getTickets()}" varStatus="tblStatus">
+                    <ui:repeat var="ticket" value="#{ticketBean.getOpenTickets()}" varStatus="tblStatus">
 	    			<h:panelGroup rendered="#{tblStatus.even}">
 	   			  <tr class="ticket-tbl-even-row">
 		    			<td><h:link value="#{ticket.getTicketID()}" outcome="detailsTicket">
@@ -40,7 +39,8 @@
 	    			</h:panelGroup>
 	    		</ui:repeat>
                 </tbody>
-            </table>       
+            </table>
+            <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
         </h:form>
     </h:body>
 </html>

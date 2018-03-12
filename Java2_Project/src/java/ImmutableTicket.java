@@ -11,8 +11,8 @@
  */
 class ImmutableTicket 
 {
-    protected int    id;
-    protected int appId;
+    private int    id;
+    private int appId;
     protected String status;
     protected String priority;
     protected String assignee;
