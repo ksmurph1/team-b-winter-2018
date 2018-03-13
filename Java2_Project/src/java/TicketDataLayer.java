@@ -116,5 +116,29 @@ final class TicketDataLayer implements ITicketDataLayer
        }
        return app; 
     }
+
+    @Override
+    public Application[] loadApps()
+    {
+       ArrayList<Application> result=new ArrayList<Application>();
+       if (connection != null)
+       {
+            try (PreparedStatement statement=
+                    connection.prepareStatement(props.getProperty("jdbc.getappsSQL")))
+            {
+                ResultSet rset=statement.executeQuery();
+                while (rset.next())
+                {
+                    result.add(new Application(rset.getObject("id", Integer.TYPE),rset.getObject("Name", String.class),
+                           rset.getObject("Details",String.class),rset.getObject("Status", String.class)));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex.getStackTrace());
+            }
+       }
+       return result.toArray(new Application[result.size()]); 
+    }
     
 }

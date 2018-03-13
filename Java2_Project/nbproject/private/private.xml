@@ -4,16 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/web/editTicket.xhtml</file>
-            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/ApplicationBean.java</file>
-            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/Application.java</file>
+            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/database.properties</file>
+            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/web/detailsTicket.xhtml</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/AppTicketBean.java</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/TicketDataLayer.java</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/web/openTickets.xhtml</file>
+            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/Ticket.java</file>
+            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/SubmitTicketBean.java</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/TicketBean.java</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/web/submitTicket.xhtml</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/ITicketDataLayer.java</file>
             <file>file:/home/kerry/team-b-winter-2018/Java2_Project/src/java/ImmutableTicket.java</file>
-            <file>file:/home/kerry/team-b-winter-2018/Java2_Project/web/editApplication.xhtml</file>
         </group>
     </open-files>
 </project-private>

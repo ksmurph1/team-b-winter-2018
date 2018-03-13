@@ -15,4 +15,6 @@ interface ITicketDataLayer
 
    Application getAppById(int id);
 
+   Application[] loadApps();
+
 }

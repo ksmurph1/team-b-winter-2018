@@ -12,7 +12,7 @@ import javax.enterprise.context.RequestScoped;
 /**
  * Bean for Ticket
  */
-@Named(value = "ticketBean")
+@Named(value = "sbmtktBean")
 @RequestScoped
 public class SubmitTicketBean extends SubmitTicket {
     private static final String SQL_INSERT = "INSERT INTO `my_database`.`Ticket` "

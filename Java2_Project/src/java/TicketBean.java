@@ -2,13 +2,13 @@
 
 import java.util.Arrays;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  * Bean for Ticket
  */
 @ManagedBean(name="ticketBean")
-@RequestScoped
+@ViewScoped
 public class TicketBean 
 {
     private ITicketDataLayer dl=new TicketDataLayer();

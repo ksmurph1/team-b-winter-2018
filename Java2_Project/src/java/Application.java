@@ -1,5 +1,6 @@
 
 public class Application {
+    private int id;
     private String appName;
     private String appDetails;
     private String appStatus;
@@ -13,6 +14,12 @@ public class Application {
         this.appName = name;
         this.appDetails = details;
         this.appStatus = status;
+    }
+    
+    Application(int id, String name, String details, String status)
+    {
+        this(name,details,status);
+        this.id=id;
     }
     
     public String getAppName() {
@@ -39,4 +46,8 @@ public class Application {
         this.appStatus = appStatus;
     }
     
+    int getId()
+    {
+        return this.id;
+    }
 }
