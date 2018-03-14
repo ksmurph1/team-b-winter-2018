@@ -20,7 +20,7 @@ import javax.faces.bean.ManagedBean;
 public class AppTicketBean extends ApplicationBean 
 {
     private ITicketDataLayer dl=new TicketDataLayer();
-    private Integer selectedItem; // +getter +setter
+    private Integer selectedItem=0; // +getter +setter
     private Map<Integer, String> availableItems;//id -> name, value, label pair
     
     private int id;
@@ -43,8 +43,10 @@ public class AppTicketBean extends ApplicationBean
         this.availableItems=Arrays.stream(apps).collect(
                 java.util.stream.Collectors.toMap(a->a.getId(),a->a.getAppName()));
         // set selected item to first item by default
-        this.selectedItem=apps[0].getId();
-        
+        if (apps != null && apps.length > 0)
+        {
+           this.selectedItem=apps[0].getId();
+        }
     }
     public Map<Integer, String> getAvailableItems()
     {
