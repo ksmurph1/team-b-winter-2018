@@ -5,11 +5,25 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        #{ticketBean.setAppID(appTktBean.selectedItem)}
         <title>Open Tickets</title>
         <!--<h:outputStylesheet library="css" name="tablestyle.css" />-->
     </h:head>
     <h:body>
-        <h:form>            
+        <h:outputLabel for="appSelector" value="Please select application for which tickets should be displayed"/>
+        <h:form>
+            <h:panelGrid id="appSelector" columns="2">
+            <h:outputText value="Application Name"/>
+            <h:selectOneMenu value="#{appTktBean.selectedItem}">
+               <c:selectItems value="#{appTktBean.availableItems.entrySet()}" var="entry"
+                           itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+               <c:ajax listener="#{ticketBean.setAppID(appTktBean.selectedItem)}" render="otickets"/>
+            </h:selectOneMenu>
+            </h:panelGrid>
+            <br/>
+            <h:outputLabel for="otickets" value="Open Tickets"/>
+            <h:panelGroup id="otickets">
+              
             <table class="ticket-table">
                 <tr>
     			<th class="ticket-table-hdr">Id</th>
@@ -18,7 +32,7 @@
     			<th class="ticket-table-hdr">Summary</th>
     		</tr>
                 <tbody class="ticket-tbl-body">
-                    <ui:repeat var="ticket" value="#{ticketBean.getOpenTickets()}" varStatus="tblStatus">
+                    <ui:repeat var="ticket" value="#{ticketBean.getTicketsByApp()}" varStatus="tblStatus">
 	    			<h:panelGroup rendered="#{tblStatus.even}">
 	   			  <tr class="ticket-tbl-even-row">
 		    			<td><h:link value="#{ticket.getTicketID()}" outcome="detailsTicket">
@@ -40,6 +54,8 @@
 	    		</ui:repeat>
                 </tbody>
             </table>
+            </h:panelGroup>
+            <br/><br/><br/>
             <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
         </h:form>
     </h:body>

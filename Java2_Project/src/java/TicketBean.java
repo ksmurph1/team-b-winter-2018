@@ -16,13 +16,14 @@ public class TicketBean
     private Ticket ticket=new Ticket();
     private int appId;
     
-    public ImmutableTicket[] getOpenTickets()
+    public ImmutableTicket[] getTicketsByApp()
     {
         // make sure get from database in case updated
-        // only display open tickets
-        return (ImmutableTicket[])Arrays.stream(dl.getTickets()).filter(
-                t->"NEW".equals(t.getTicketStatus()) || "OPEN".equals(
-                        t.getTicketStatus())).toArray(ImmutableTicket[]::new);
+        // only display open tickets for given app->appId
+        return Arrays.stream(dl.getTickets()).filter(
+                t->("NEW".equals(t.getTicketStatus()) || "OPEN".equals(
+                        t.getTicketStatus())) &&
+                        t.getAppID() == appId).toArray(ImmutableTicket[]::new);
     }
     
     public ImmutableTicket getTicket(final int id)
