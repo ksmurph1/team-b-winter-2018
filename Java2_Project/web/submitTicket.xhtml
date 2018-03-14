@@ -11,31 +11,31 @@
         <h:form>
             <h:panelGrid columns="2">
             <h:outputText value="Application Name"></h:outputText>
-            <h:selectOneMenu value="#{ticketBean.appName}">
-                <f:selectItems value="#{ticketBean.getApplications()}" var="result" itemValue="#{result}"/>
+            <h:selectOneMenu value="#{sbmtktBean.appName}">
+                <f:selectItems value="#{sbmtktBean.getApplications()}" var="result" itemValue="#{result}"/>
             </h:selectOneMenu>
             <h:outputText value="Ticket Priority"></h:outputText>
-            <h:selectOneMenu value="#{ticketBean.priority}">
+            <h:selectOneMenu value="#{sbmtktBean.priority}">
                 <f:selectItem itemValue="HIGH" itemLabel="HIGH"/>
                 <f:selectItem itemValue="MEDIUM" itemLabel="MEDIUM"/>
                 <f:selectItem itemValue="LOW" itemLabel="LOW"/>
             </h:selectOneMenu>
             <h:outputText value="Ticket Status"></h:outputText>
-            <h:selectOneMenu value="#{ticketBean.ticketStatus}">
+            <h:selectOneMenu value="#{sbmtktBean.ticketStatus}">
                 <f:selectItem itemValue="OPEN" itemLabel="OPEN"/>
                 <f:selectItem itemValue="NEW" itemLabel="NEW"/>
                 <f:selectItem itemValue="SOLVED" itemLabel="SOLVED"/>
                 <f:selectItem itemValue="CLOSED" itemLabel="CLOSED"/>
             </h:selectOneMenu>
             <h:outputText value="Assignee"></h:outputText>
-            <h:inputText value="#{ticketBean.assignee}" size="40" maxlength="40"></h:inputText>
+            <h:inputText value="#{sbmtktBean.assignee}" size="40" maxlength="40"></h:inputText>
             <h:outputText value="Summary"></h:outputText>
-            <h:inputText value="#{ticketBean.summary}" size="50" maxlength="50"></h:inputText>
+            <h:inputText value="#{sbmtktBean.summary}" size="50" maxlength="50"></h:inputText>
             <h:outputText value="Detailed Description"></h:outputText>
-            <h:inputTextarea value="#{ticketBean.detailedDescription}" cols="60" rows="4"></h:inputTextarea>
+            <h:inputTextarea value="#{sbmtktBean.detailedDescription}" cols="60" rows="4"></h:inputTextarea>
             </h:panelGrid>
             
-            <h:commandButton action = "#{ticketBean.addTicket}" value = "Submit" />
+            <h:commandButton action = "#{sbmtktBean.addTicket}" value = "Submit" />
             <h:commandButton action = "#{navigationController.moveToDisplayTicketsPage}" value = "Display All Tickets" />
             <h:commandButton action = "#{navigationController.moveToHomePage}" value = "Back To Home Page" />
         </h:form>
