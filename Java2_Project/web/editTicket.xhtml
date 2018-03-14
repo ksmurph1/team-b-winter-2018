@@ -45,7 +45,7 @@ and open the template in the editor.
             <h:panelGrid columns="2">
             <h:outputText value="Name"/>
             <h:selectOneMenu value="#{appTktBean.selectedItem}">
-               <f:selectItems value="#{appTktBean.availableItems.entrySet()}" var="entry"
+               <f:selectItems value="#{appTktBean.getNonClosedItems().entrySet()}" var="entry"
                            itemValue="#{entry.key}" itemLabel="#{entry.value}" />
                <f:ajax listener="#{appTktBean.setAppById(appTktBean.selectedItem)}" render="appDetails"/>
             </h:selectOneMenu>

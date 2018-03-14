@@ -1,6 +1,6 @@
 
+import java.util.AbstractMap;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -66,5 +66,11 @@ public class AppTicketBean extends ApplicationBean
     {
        selectedItem=item; 
     }
-
+    public Map<Integer, String> getNonClosedApps()
+    {
+        return availableItems.keySet().stream().map(id->dl.getAppById(id)).filter(
+                app->app.getAppStatus() != "CLOSED").collect(
+                        java.util.stream.Collectors.toMap(a->a.getId(),a->a.getAppName()));
+    }
+    
 }
