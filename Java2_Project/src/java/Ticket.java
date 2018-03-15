@@ -32,4 +32,9 @@ public class Ticket extends ImmutableTicket
     public void setDetailedDescription(String detailedDescription) {
         this.detailedDescription = detailedDescription;
     }
+    
+    public void setAppID(int id)
+    {
+        this.appId =id;
+    }
 }

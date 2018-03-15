@@ -16,7 +16,6 @@ and open the template in the editor.
     </f:view> -->
     <h:head>
         #{ticketBean.setTicket(param['id'])}
-        #{appTktBean.setAppById(param['id'])}
         <title>Edit Ticket</title>
     </h:head>
     <h:body>
@@ -45,7 +44,7 @@ and open the template in the editor.
             <h:panelGrid columns="2">
             <h:outputText value="Name"/>
             <h:selectOneMenu value="#{appTktBean.selectedItem}">
-               <f:selectItems value="#{appTktBean.getNonClosedItems().entrySet()}" var="entry"
+                <f:selectItems value="#{appTktBean.availableItems.entrySet()}" var="entry"
                            itemValue="#{entry.key}" itemLabel="#{entry.value}" />
                <f:ajax listener="#{appTktBean.setAppById(appTktBean.selectedItem)}" render="appDetails"/>
             </h:selectOneMenu>

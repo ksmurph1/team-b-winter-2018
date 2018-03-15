@@ -14,7 +14,6 @@ public class TicketBean
     private ITicketDataLayer dl=new TicketDataLayer();
     //private Ticket[] tickets;
     private Ticket ticket=new Ticket();
-    private int appId;
     
     public ImmutableTicket[] getTicketsByApp()
     {
@@ -23,7 +22,7 @@ public class TicketBean
         return Arrays.stream(dl.getTickets()).filter(
                 t->("NEW".equals(t.getTicketStatus()) || "OPEN".equals(
                         t.getTicketStatus())) &&
-                        t.getAppID() == appId).toArray(ImmutableTicket[]::new);
+                        t.getAppID() == getAppID()).toArray(ImmutableTicket[]::new);
     }
     
     public ImmutableTicket getTicket(final int id)
@@ -48,7 +47,7 @@ public class TicketBean
     }
     public int getAppID()
     {
-        return appId;
+        return ticket.getAppID();
     }
     
     public String getStatus() 
@@ -105,7 +104,7 @@ public class TicketBean
     
     public void setAppID(int id)
     {
-       this.appId=id;    
+       ticket.appId=id;    
     }
     public String saveTicket()
     {

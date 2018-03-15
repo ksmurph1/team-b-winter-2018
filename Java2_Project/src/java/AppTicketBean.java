@@ -2,7 +2,7 @@
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Map;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 /*
@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
  * @author kerry
  */
 @ManagedBean(name="appTktBean")
-@RequestScoped
+@ApplicationScoped
 public class AppTicketBean extends ApplicationBean 
 {
     private ITicketDataLayer dl=new TicketDataLayer();
@@ -65,12 +65,6 @@ public class AppTicketBean extends ApplicationBean
     public void setSelectedItem(final int item)
     {
        selectedItem=item; 
-    }
-    public Map<Integer, String> getNonClosedApps()
-    {
-        return availableItems.keySet().stream().map(id->dl.getAppById(id)).filter(
-                app->app.getAppStatus() != "CLOSED").collect(
-                        java.util.stream.Collectors.toMap(a->a.getId(),a->a.getAppName()));
     }
     
 }
