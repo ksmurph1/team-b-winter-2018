@@ -15,15 +15,15 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "sbmtktBean")
 @RequestScoped
 public class SubmitTicketBean extends SubmitTicket {
-    private static final String SQL_INSERT = "INSERT INTO `my_database`.`Ticket` "
+    private static final String SQL_INSERT = "INSERT INTO `database`.`Ticket` "
     		+ "(`idApplication`, `Name`, `Status`,"
     		+ "`Priority`, `Assignee`,"
     		+ " `Summary`, `Detailed Description`) VALUES (?, ?, ?, ?, ?, ?, ?);";
      
-    private static final String SQL_SELECT = "SELECT * FROM `my_database`.`Ticket`";
-    private static final String SQL_SELECT_APPS = "SELECT * FROM `my_database`.`Application`";
-    private static final String SQL_SELECT_APP_NAME = "SELECT * FROM `my_database`.`Application` WHERE `Application Name` = ?";
-    private static final String SQL_UPDATE_TICKET_STATUS = "UPDATE `my_database`.`Ticket` SET Status = ? WHERE id = ?";
+    private static final String SQL_SELECT = "SELECT * FROM `database`.`Ticket`";
+    private static final String SQL_SELECT_APPS = "SELECT * FROM `database`.`Application`";
+    private static final String SQL_SELECT_APP_NAME = "SELECT * FROM `database`.`Application` WHERE `Name` = ?";
+    private static final String SQL_UPDATE_TICKET_STATUS = "UPDATE `database`.`Ticket` SET Status = ? WHERE id = ?";
     
     /**
      * Creates a new instance of TicketBean
@@ -33,15 +33,14 @@ public class SubmitTicketBean extends SubmitTicket {
     
     public List<String> getApplications() throws ClassNotFoundException
     {
-        ResultSet applications_rs = null;
         Connection con = getConnection();
-        List<String> ApplicationsList = new ArrayList<String>();
+        List<String> ApplicationsList = new ArrayList<>();
             try {
                 PreparedStatement pst = con.prepareStatement(SQL_SELECT_APPS);
-                applications_rs = pst.executeQuery();
+                ResultSet applications_rs = pst.executeQuery();
                 while(applications_rs.next()){
                     //Retrieve by column name
-                    String name = applications_rs.getString("Application Name");
+                    String name = applications_rs.getString("Name");
                     ApplicationsList.add(name);
                 }
  			  
@@ -70,9 +69,9 @@ public class SubmitTicketBean extends SubmitTicket {
             
             while(result_rs.next()){
                 //Retrieve by column name
-                app_status = result_rs.getString("Application Status");
+                app_status = result_rs.getString("Status");
                 if(app_status.equals("OPEN")) {
-                    application_id = result_rs.getInt("idApplication");
+                    application_id = result_rs.getInt("id");
                 }
             }
         } catch (SQLException e1) {
@@ -206,9 +205,9 @@ public class SubmitTicketBean extends SubmitTicket {
      */
     public Connection getConnection() throws ClassNotFoundException {
       Connection con = null;
-      String url = "jdbc:mysql://127.0.0.1:3306/my_database";
-      String user = "admin";
-      String password = "password";
+      String url = "jdbc:mysql://127.0.0.1:3306/database";
+      String user = "root";
+      String password = "E,scky96+PJy";
       
       Class.forName("com.mysql.jdbc.Driver");
       
