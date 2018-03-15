@@ -15,13 +15,13 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "applicationBean")
 @RequestScoped
 public class ApplicationBean{
-    private static final String SQL_INSERT = "INSERT INTO `database`.`Application` "
+    private static final String SQL_INSERT = "INSERT INTO `ticketsolver`.`Application` "
     		+ "(`id`, "
     		+ "`Name`, `Details`,"
     		+ " `Status`) VALUES (?, ?, ?, ?);";
-    private static final String SQL_SELECT = "SELECT * FROM `database`.`Application` "
+    private static final String SQL_SELECT = "SELECT * FROM `ticketsolver`.`Application` "
     		+ "WHERE name = ?";
-    private static final String SQL_UPDATE = "UPDATE  `database`.`Application` "
+    private static final String SQL_UPDATE = "UPDATE  `ticketsolver`.`Application` "
     		+ "SET "
     		+ "Details = ?"
     		+ " , Status = ?" 
@@ -144,9 +144,9 @@ public class ApplicationBean{
      */
     public Connection getConnection() throws ClassNotFoundException {
       Connection con = null;
-      String url = "jdbc:mysql://127.0.0.1:3306/database";
-      String user = "root";
-      String password = "E,scky96+PJy";
+      String url = "jdbc:mysql://127.0.0.1:3306/ticketsolver";
+      String user = "kerry";
+      String password = "restem12";
       
       Class.forName("com.mysql.jdbc.Driver");
       

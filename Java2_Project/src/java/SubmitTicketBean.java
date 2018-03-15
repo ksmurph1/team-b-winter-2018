@@ -15,15 +15,15 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "sbmtktBean")
 @RequestScoped
 public class SubmitTicketBean extends SubmitTicket {
-    private static final String SQL_INSERT = "INSERT INTO `database`.`Ticket` "
+    private static final String SQL_INSERT = "INSERT INTO `ticketsolver`.`Ticket` "
     		+ "(`idApplication`, `Name`, `Status`,"
     		+ "`Priority`, `Assignee`,"
     		+ " `Summary`, `Detailed Description`) VALUES (?, ?, ?, ?, ?, ?, ?);";
      
-    private static final String SQL_SELECT = "SELECT * FROM `database`.`Ticket`";
-    private static final String SQL_SELECT_APPS = "SELECT * FROM `database`.`Application`";
-    private static final String SQL_SELECT_APP_NAME = "SELECT * FROM `database`.`Application` WHERE `Name` = ?";
-    private static final String SQL_UPDATE_TICKET_STATUS = "UPDATE `database`.`Ticket` SET Status = ? WHERE id = ?";
+    private static final String SQL_SELECT = "SELECT * FROM `ticketsolver`.`Ticket`";
+    private static final String SQL_SELECT_APPS = "SELECT * FROM `ticketsolver`.`Application`";
+    private static final String SQL_SELECT_APP_NAME = "SELECT * FROM `ticketsolver`.`Application` WHERE `Name` = ?";
+    private static final String SQL_UPDATE_TICKET_STATUS = "UPDATE `ticketsolver`.`Ticket` SET Status = ? WHERE id = ?";
     
     /**
      * Creates a new instance of TicketBean
@@ -205,9 +205,9 @@ public class SubmitTicketBean extends SubmitTicket {
      */
     public Connection getConnection() throws ClassNotFoundException {
       Connection con = null;
-      String url = "jdbc:mysql://127.0.0.1:3306/database";
-      String user = "root";
-      String password = "E,scky96+PJy";
+      String url = "jdbc:mysql://127.0.0.1:3306/ticketsolver";
+      String user = "kerry";
+      String password = "restem12";
       
       Class.forName("com.mysql.jdbc.Driver");
       
