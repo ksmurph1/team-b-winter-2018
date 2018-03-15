@@ -23,11 +23,10 @@ public class AppTicketBean extends ApplicationBean
     private Integer selectedItem=0; // +getter +setter
     private Map<Integer, String> availableItems;//id -> name, value, label pair
     
-    private int id;
     
     public void setAppById(final int id)
     {
-        this.id=id;
+        
         Application app=dl.getAppById(id);
         setAppName(app.getAppName());
         setAppDetails(app.getAppDetails());
@@ -55,10 +54,10 @@ public class AppTicketBean extends ApplicationBean
 
     public int getSelectedItem()
     {
-        if (this.id !=0)
+        /*if (this.id !=0)
         {
             selectedItem=this.id;
-        }
+        }*/
         return selectedItem;
     }
     

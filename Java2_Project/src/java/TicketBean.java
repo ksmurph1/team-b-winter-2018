@@ -106,8 +106,9 @@ public class TicketBean
     {
        ticket.appId=id;    
     }
-    public String saveTicket()
+    public String saveTicket(final int appId)
     {
+        ticket.setAppID(appId);
         dl.updateTicket(ticket);
         return "/openTickets.xhtml?faces-redirect=true";
     }
