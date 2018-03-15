@@ -15,13 +15,13 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "applicationBean")
 @RequestScoped
 public class ApplicationBean{
-    private static final String SQL_INSERT = "INSERT INTO `my_database`.`Application` "
-    		+ "(`idApplication`, "
-    		+ "`Application Name`, `Application Details`,"
-    		+ " `Application Status`) VALUES (?, ?, ?, ?);";
-    private static final String SQL_SELECT = "SELECT * FROM `my_database`.`Application` "
+    private static final String SQL_INSERT = "INSERT INTO `database`.`Application` "
+    		+ "(`id`, "
+    		+ "`Name`, `Details`,"
+    		+ " `Status`) VALUES (?, ?, ?, ?);";
+    private static final String SQL_SELECT = "SELECT * FROM `database`.`Application` "
     		+ "WHERE name = ?";
-    private static final String SQL_UPDATE = "UPDATE  `my_database`.`Application` "
+    private static final String SQL_UPDATE = "UPDATE  `database`.`Application` "
     		+ "SET "
     		+ "Details = ?"
     		+ " , Status = ?" 
@@ -117,7 +117,8 @@ public class ApplicationBean{
     {
         Application newApp = new Application();
         newApp.setAppName(this.appName);
-       
+        newApp.setAppDetails(this.appDetails);
+        newApp.setAppStatus(this.appStatus);
         Connection con = getConnection();
         try {   
             PreparedStatement pst = con.prepareStatement(SQL_UPDATE);
@@ -143,7 +144,7 @@ public class ApplicationBean{
      */
     public Connection getConnection() throws ClassNotFoundException {
       Connection con = null;
-      String url = "jdbc:mysql://127.0.0.1:3306/my_database";
+      String url = "jdbc:mysql://127.0.0.1:3306/database";
       String user = "root";
       String password = "E,scky96+PJy";
       
